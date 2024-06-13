@@ -5,11 +5,22 @@
 # - `get_author()`: Returns "Author: " followed by the instance author.
 
 class Book:
-    pass
+    def __init__(self, title: str, author: str): #two attributes:`title` and `author`.
+        self.title: str = title
+        self.author: str = author
+
+    def get_title(self) -> str:  #method1 get_title()
+        return f"Title: {self.title}"
+
+    def get_author(self) -> str:#method2 get_author()
+        return f"Author: {self.author}"
+
+# Instantiate the Book class
 
 PP = Book("Pride and Prejudice", "Jane Austen")
 H = Book("Hamlet", "William Shakespeare")
 WP = Book("War and Peace", "Leo Tolstoy")
+
 
 # Examples of attributes and methods:
 print(PP.title)  # Expected: "Pride and Prejudice"
