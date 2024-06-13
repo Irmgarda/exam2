@@ -6,8 +6,26 @@
 # - The function should compute the average of the 'age' values for the remaining adult user objects.
 # - The result should be rounded to two decimal places if necessary.
 
-def calculate_average_age_of_adults(users):
+class NoAdultsError(Exception):
+    """Exception raised when there are no adults in the list """
     pass
+
+def calculate_average_age_of_adults(users):
+
+
+    # 1. Filter users who are under 18 years old
+    adults = [user for user in users if user['age'] >= 18]
+
+    # If there are no adults, raise an error
+    if not adults:
+        raise NoAdultsError("There are no adult users ")
+
+    # 2. Calculate the average age for adults
+    total_age = sum(user['age'] for user in adults)
+    average_age = total_age / len(adults)
+
+    # 3. The average age rounded to two decimal places
+    return round(average_age, 2)
 
 # Example user data
 users = [
@@ -22,5 +40,9 @@ users = [
     {"id": '9', "name": 'Daniel Cane', "age": 51},
 ]
 
+
 # Testing the function
-print(calculate_average_age_of_adults(users))  # This should print the average age of adult users (18+)
+try:
+    print(calculate_average_age_of_adults(users))  # This should print the average age of adult users (18+)
+except NoAdultsError as e:
+    print(e)

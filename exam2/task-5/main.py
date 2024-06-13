@@ -11,7 +11,12 @@
 # - Return the list of names in alphabetical order.
 
 def who_passed(students):
-    pass
+ passed_students = [] #Initialize a list of passed students:
+
+ for student, scores in students.items(): #iterate to students scores
+   if all(int(score.split('/')[0]) == int(score.split('/')[1]) for score in scores): # Check if score at least 100%
+     passed_students.append(student) # add the passed student
+     return sorted(passed_students) # return the list of passed students
 
 # Examples:
 print(who_passed({
